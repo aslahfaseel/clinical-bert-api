@@ -6,7 +6,10 @@ client = TestClient(app)
 test_cases = [
     ("The patient denies chest pain.", "ABSENT"),
     ("He has a history of hypertension.", "PRESENT"),
-    ("If the patient experiences dizziness, reduce the dosage.", "PRESENT"),  # match model output
+    (
+        "If the patient experiences dizziness, reduce the dosage.",
+        "PRESENT",
+    ),  # match model output
     ("No signs of pneumonia were observed.", "ABSENT"),
 ]
 
