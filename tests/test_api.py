@@ -3,7 +3,9 @@ import os
 from fastapi.testclient import TestClient
 from app.main import app
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.insert(
+    0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+)
 
 client = TestClient(app)
 test_cases = [
@@ -21,4 +23,3 @@ def test_predictions():
         response = client.post("/predict", json={"sentence": sentence})
         assert response.status_code == 200
         assert response.json()["label"] == expected_label
-        
