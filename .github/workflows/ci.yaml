@@ -31,10 +31,16 @@ jobs:
         run: |
            black .
            flake8 .
+        
+      - name: Format code with Black
+        run: black --line-length 88 .
+      - name: Lint with flake8
+        run: flake8 --max-line-length=88 .
+
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
-        
+
       - name: Run unit tests
         run: |
           pytest tests/
