@@ -8,12 +8,14 @@ sys.path.insert(
 )
 
 client = TestClient(app)
+
 test_cases = [
     ("The patient denies chest pain.", "ABSENT"),
     ("He has a history of hypertension.", "PRESENT"),
     (
-        "If the patient experiences dizziness, reduce the dosage.",
-        "PRESENT",
+        "If the patient experiences dizziness, "
+        "reduce the dosage.",
+        "CONDITIONAL",
     ),
     ("No signs of pneumonia were observed.", "ABSENT"),
 ]
@@ -28,4 +30,3 @@ def test_predictions():
     expected_label = "ABSENT"
     assert response.status_code == 200
     assert response.json()["label"] == expected_label
-
