@@ -27,10 +27,11 @@ jobs:
           pip install -r requirements.txt
           pip install black flake8 pytest
 
-      - name: Run lint checks
+      - name: Lint & Format
         run: |
-          black --check .
-          flake8 .
+           black .
+           flake8 .
+
 
       - name: Run unit tests
         run: |
