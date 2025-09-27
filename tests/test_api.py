@@ -12,6 +12,7 @@ sys.path.insert(
         )
     )
 )
+
 client = TestClient(app)
 test_cases = [
     ("The patient denies chest pain.", "ABSENT"),
