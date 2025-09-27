@@ -1,6 +1,12 @@
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
+from transformers import (
+    AutoTokenizer,
+    AutoModelForSequenceClassification,
+    pipeline,
+)
 
-MODEL_NAME = "bvanaken/clinical-assertion-negation-bert"
+MODEL_NAME = (
+    "bvanaken/clinical-assertion-negation-bert"
+)
 
 # Load once at startup
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
