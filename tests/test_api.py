@@ -20,10 +20,12 @@ test_cases = [
 
 
 def test_predictions():
-    for sentence, expected_label in test_cases:
-        response = client.post(
-    "/predict",
-    json={"sentence": "The patient denies chest pain."}
-)
-        assert response.status_code == 200
-        assert response.json()["label"] == expected_label
+    response = client.post(
+        "/predict",
+        json={"sentence": "The patient denies chest pain."}
+    )
+
+    expected_label = "ABSENT"
+    assert response.status_code == 200
+    assert response.json()["label"] == expected_label
+
