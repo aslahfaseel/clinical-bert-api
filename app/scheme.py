@@ -1,4 +1,8 @@
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
+from transformers import (
+    AutoTokenizer,
+    AutoModelForSequenceClassification,
+    pipeline,
+)
 
 MODEL_NAME = "bvanaken/clinical-assertion-negation-bert"
 

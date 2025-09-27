@@ -12,6 +12,9 @@ model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
 classifier = pipeline("text-classification", model=model, tokenizer=tokenizer)
 
 
-def predict(sentence: str):
-    result = classifier(sentence, truncation=True)[0]
-    return {"label": result["label"], "score": round(float(result["score"]), 4)}
+def predict_output(result):
+    return {
+        "label": result["label"],
+        "score": round(float(result["score"]), 4),
+    }
+
