@@ -4,9 +4,7 @@ from transformers import (
     pipeline,
 )
 
-MODEL_NAME = (
-    "bvanaken/clinical-assertion-negation-bert"
-)
+MODEL_NAME = "bvanaken/clinical-assertion-negation-bert"
 
 # Load once at startup
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
