@@ -1,0 +1,42 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Log in to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build Docker image
+        run: |
+          docker build -t clinical-bert-api:latest .
+
+      - name: Tag and push Docker image to ECR
+        run: |
+          ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+          ECR_REPO=${ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/clinical-bert-api
+          docker tag clinical-bert-api:latest $ECR_REPO:latest
+          docker push $ECR_REPO:latest
+
+      - name: Update ECS service
+        run: |
+          CLUSTER_NAME=clinical-bert-cluster
+          SERVICE_NAME=clinical-bert-service
+          IMAGE_URI=${ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/clinical-bert-api:latest
+          aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment
