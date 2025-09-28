@@ -38,6 +38,7 @@ Prediction:
 curl -X POST http://127.0.0.1:8000/predict \
      -H "Content-Type: application/json" \
      -d '{"sentence": "The patient denies chest pain."}'
+```
 
 ```bash
 
@@ -45,6 +46,7 @@ aws ecr create-repository --repository-name clinical-bert-api
 docker tag clinical-bert-api:latest <your-aws-account>.dkr.ecr.us-east-1.amazonaws.com/clinical-bert-api:latest
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <your-aws-account>.dkr.ecr.us-east-1.amazonaws.com
 docker push <your-aws-account>.dkr.ecr.us-east-1.amazonaws.com/clinical-bert-api:latest
+
 ```
 
 ###Example API Usage (Python)
