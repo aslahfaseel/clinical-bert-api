@@ -56,10 +56,10 @@ payload = {"sentence": "The patient denies chest pain."}
 
 response = requests.post(url, json=payload)
 print(response.json())
-# Output: {'label': 'ABSENT', 'score': 0.9739}
+ Output: {'label': 'ABSENT', 'score': 0.9739}
 
 
-##Known Issues / Tradeoffs
+###Known Issues / Tradeoffs
 
 The API currently supports short clinical sentences (<500ms per request). Large text may slow down.
 
